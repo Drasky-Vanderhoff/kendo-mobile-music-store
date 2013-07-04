@@ -6,7 +6,7 @@
     <AppIdentifier>com.telerik.KendoMusicStore</AppIdentifier>
     <ProjectName>Kendo Music Store</ProjectName>
     <IsRunnable>true</IsRunnable>
-    <TemplateAppName>Cordova220</TemplateAppName>
+    <TemplateAppName>Cordova270</TemplateAppName>
     <AndroidPermissions>android.permission.ACCESS_LOCATION_EXTRA_COMMANDS;android.permission.INTERNET;android.permission.WRITE_EXTERNAL_STORAGE;android.permission.ACCESS_NETWORK_STATE</AndroidPermissions>
     <DeviceOrientations>Portrait;Landscape</DeviceOrientations>
     <iOSStatusBarStyle>Default</iOSStatusBarStyle>
@@ -14,6 +14,8 @@
     <AndroidVersionCode>1</AndroidVersionCode>
     <AndroidHardwareAcceleration>true</AndroidHardwareAcceleration>
     <iOSDisplayName />
+    <iOSDeviceFamily>1;2</iOSDeviceFamily>
+    <iOSBackgroundMode />
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="App_Resources" />
@@ -33,6 +35,10 @@
       <Platform>Android</Platform>
     </Folder>
     <Folder Include="Images" />
+    <Folder Include="kendo" />
+    <Folder Include="kendo\js" />
+    <Folder Include="kendo\styles" />
+    <Folder Include="kendo\styles\images" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="App_Resources\iOS\icon.png" />
@@ -61,17 +67,19 @@
     <Content Include="Images\rays-background-horizontal.png" />
     <Content Include="Images\rays-background.png" />
     <Content Include="index.html" />
-    <Content Include="kendo\js\jquery.min.js" />
     <Content Include="kendo\js\kendo.indexedlistview.js" />
-    <Content Include="kendo\js\kendo.mobile.min.js" />
-    <Content Include="kendo\styles\images\back.png" />
     <Content Include="kendo\styles\images\ios-sprite.png" />
     <Content Include="kendo\styles\images\icons.png" />
     <Content Include="kendo\styles\images\iconmasks.svg" />
     <Content Include="kendo\styles\images\android-sprite.png" />
+    <Content Include="kendo\styles\kendo.indexedlistview.css" />
+    <Content Include="kendo\js\jquery.min.js" />
+    <Content Include="kendo\js\kendo.mobile.min.js" />
+    <Content Include="kendo\styles\images\back.png" />
     <Content Include="kendo\styles\images\KendoUI.ttf" />
     <Content Include="kendo\styles\images\KendoUI.woff" />
-    <Content Include="kendo\styles\kendo.indexedlistview.css" />
+    <Content Include="kendo\styles\images\wp8_icons.png" />
+    <Content Include="kendo\styles\images\wp8_inverseicons.png" />
     <Content Include="kendo\styles\kendo.mobile.all.min.css" />
     <Content Include="scripts\about-view.js" />
     <Content Include="scripts\account-view.js" />
@@ -108,7 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <CordovaPlugin Include="com.phonegap.plugins.childbrowser">
-      <Version>4.0.0</Version>
+      <Version>4.1.0</Version>
       <Name>Child Browser</Name>
     </CordovaPlugin>
   </ItemGroup>
