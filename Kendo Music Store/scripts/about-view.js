@@ -1,16 +1,13 @@
 define(["jQuery", "utils", "cart"], function ($, utils, cart) {
     var _openExternal = function (event, url) {
-        if($("body").hasClass("km-ios")) {
-            window.location.href = url;
-        } else {
-            try {
-                window.plugins.childBrowser.openExternal(url);
-            } catch(ex) {
-                utils.showError("Sorry, there was an error trying to open this external URL: " + url);
-            }
+        try {
+            window.open(url, '_blank', 'location=yes');
+        }
+        catch (ex) {
+            utils.showError("Sorry, there was an error trying to open this external URL: " + url);
         }
         
-        if(event && event.preventDefault) {
+        if (event && event.preventDefault) {
             event.preventDefault();
         }
         return false;
