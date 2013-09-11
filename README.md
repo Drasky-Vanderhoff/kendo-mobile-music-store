@@ -5,6 +5,7 @@ The project is a mobile app that uses data from the [Kendo Music Store](http://w
 
 > Documentation for the Mobile Music Store is located in the
 > [Kendo UI Tutorials](http://docs.kendoui.com/tutorials/Mobile/Kendo%20Mobile%20Music%20Store/kendo-mobile-music-store-intro).
+> [Icenium documentation](http://docs.icenium.com/sample-apps/sample-kendo-mobile-music-store)
 
 ## Installing
 
