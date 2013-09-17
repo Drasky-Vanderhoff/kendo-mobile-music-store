@@ -14,15 +14,10 @@
     </MobileProjectCodesigningIdentities>
   </CodesigningIdentitySettings>
   <MobileProjectProvisionSettings xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-    <MobileProjectProvisionNames xmlns:d2p1="http://schemas.datacontract.org/2004/07/Telerik.BlackDragon.Common.Data">
-      <d2p1:Project>
-        <d2p1:Identifier>sample-kendo-mobile-music-store\Kendo Music Store</d2p1:Identifier>
-        <d2p1:MobileProvision>264ab1ba-c872-49cc-8dd9-867c7a81d5dc</d2p1:MobileProvision>
-      </d2p1:Project>
-    </MobileProjectProvisionNames>
+    <MobileProjectProvisionNames xmlns:d2p1="http://schemas.datacontract.org/2004/07/Telerik.BlackDragon.Common.Data" />
   </MobileProjectProvisionSettings>
   <SolutionSettings xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Telerik.BlackDragon.Client.Modules.Settings">
     <BuildConfiguration>Debug</BuildConfiguration>
-    <StartUpProject i:nil="true" />
+    <StartUpProject>Kendo Music Store</StartUpProject>
   </SolutionSettings>
 </JustDevelopSettings>
