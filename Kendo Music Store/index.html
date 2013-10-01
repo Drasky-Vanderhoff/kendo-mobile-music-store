@@ -1,442 +1,467 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <meta charset="utf-8" />
-        <script src="cordova.js"></script>
-        <script src="Plugins/Child%20Browser/childbrowser.js"></script>
-        
-        <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-        <link href="kendo/styles/kendo.indexedlistview.css" rel="stylesheet" />
-        <link href="styles/main.css" rel="stylesheet" />
-    </head>
-    <body id="body">
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<script src="cordova.js"></script>
 
-        <!-- Home Views -->
+		<link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+		<link href="kendo/styles/kendo.indexedlistview.css" rel="stylesheet" />
+		<link href="styles/main.css" rel="stylesheet" />
+	</head>
+	<body id="body">
 
-        <div data-role="view" id="genres-view" data-layout="home-layout" data-title="Albums" data-model="app.genresView.viewModel" data-show="app.genresView.onShow">
-            <ul data-role="listview" data-bind="source: genres" data-template="genre-list-template", data-style="inset"></ul>
-        </div>
+		<!-- Home Views -->
 
-        <div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-model="app.artistsView.viewModel" class="km-insetcontent" style="display: none;">
-            <ul data-role="indexedlistview" data-bind="source: artists" data-template="artist-list-template" data-fixed-headers="true"></ul>
-        </div>
-        
-        <div data-role="view" id="albums-view" data-layout="base-layout" data-model="app.albumsView.viewModel" data-show="app.albumsView.show" data-transition="slide:left" style="display: none;">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
-                    <span data-role="view-title"></span>
-                </div>
-            </header>
+		<div data-role="view" id="genres-view" data-layout="home-layout" data-title="Albums" data-model="app.genresView.viewModel" data-show="app.genresView.onShow">
+			<ul data-role="listview" data-bind="source: genres" data-template="genre-list-template" data-style="inset"></ul>
+		</div>
 
-            <ul id="albums-listview" data-role="listview" data-bind="source: albums" data-auto-bind="false" data-template="album-list-template" data-style="inset" data-endless-scroll="true"></ul>
-        </div>
+		<div data-role="view" id="artists-view" data-layout="home-layout" data-title="Albums" data-model="app.artistsView.viewModel" class="km-insetcontent" style="display: none;">
+			<ul data-role="indexedlistview" data-bind="source: artists" data-template="artist-list-template" data-fixed-headers="true"></ul>
+		</div>
 
-        <div data-role="layout" data-id="home-layout" data-init="app.homeLayout.init" data-show="app.homeLayout.show">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <span data-role="view-title"></span>
-                </div>
-                <ul class="select-group">
-                    <li data-target="#genres-view">Genres</li>
-                    <li data-target="#artists-view">Artists</li>
-                </ul>
-            </header>
+		<div data-role="view" id="albums-view" data-layout="base-layout" data-model="app.albumsView.viewModel" data-show="app.albumsView.show" data-transition="slide:left" style="display: none;">
+			<header data-role="header">
+				<div data-role="navbar">
+					<a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+					<span data-role="view-title"></span>
+				</div>
+			</header>
 
-            <div data-role="footer">
-                <div data-role="tabstrip">
-                    <a href="#genres-view" data-icon="home">Home</a>
-                    <a href="#search-view" data-icon="search">Search</a>
-                    <a href="#cart-view" data-icon="cart">Cart<span class="cart-badge km-badge" style="display: none;"></span></a>
-                    <a href="#account-view" data-icon="contacts">Account</a>
-                    <a href="#about-view" data-icon="about">About</a>
-                </div>
-            </div>
-        </div>
+			<ul id="albums-listview" data-role="listview" data-bind="source: albums" data-auto-bind="false" data-template="album-list-template" data-style="inset" data-endless-scroll="true"></ul>
+		</div>
 
-        <div data-role="layout" data-id="home-layout" data-init="app.homeLayout.init" data-show="app.homeLayout.show" data-platform="android">
-            <div data-role="header">
-                <div data-role="navbar">
-                    <div class="app-icon" data-align="left"></div>
-                    <span data-role="view-title"></span>
-                    <div data-align="right" class="action-buttons">
-                        <a data-role="button" href="#search-view" data-icon="search"></a>
-                        <a data-role="button" href="#cart-view" data-icon="cart"></a>
-                        <a data-role="button" href="#popover-action-overflow" data-rel="popover" data-icon="action-overflow"></a>
-                    </div>
-                </div>
-                <div data-role="tabstrip">
-                    <a href="#genres-view">Genres</a>
-                    <a href="#artists-view">Artists</a>
-                </div>
-            </div>
+		<div data-role="layout" data-id="home-layout" data-init="app.homeLayout.init" data-show="app.homeLayout.show">
+			<header data-role="header">
+				<div data-role="navbar">
+					<span data-role="view-title"></span>
+				</div>
+				<ul class="select-group">
+					<li data-target="#genres-view">Genres</li>
+					<li data-target="#artists-view">Artists</li>
+				</ul>
+			</header>
 
-            <div data-role="popover" id="popover-action-overflow" data-popup='{"height": 110, "width": 125}'>
-                <div data-role="view" data-title="People">
-                    <ul data-role="listview" data-click="app.homeLayout.navigate">
-                        <li data-target="#account-view">Account</li>
-                        <li data-target="#about-view">About</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+			<div data-role="footer">
+				<div data-role="tabstrip">
+					<a href="#genres-view" data-icon="home">Home</a>
+					<a href="#search-view" data-icon="search">Search</a>
+					<a href="#cart-view" data-icon="cart">
+						Cart<span class="cart-badge km-badge" style="display: none;"></span>
+					</a>
+					<a href="#account-view" data-icon="contacts">Account</a>
+					<a href="#about-view" data-icon="about">About</a>
+				</div>
+			</div>
+		</div>
 
+		<div data-role="layout" data-id="home-layout" data-init="app.homeLayout.init" data-show="app.homeLayout.show" data-platform="android">
+			<div data-role="header">
+				<div data-role="navbar">
+					<div class="app-icon" data-align="left"></div>
+					<span data-role="view-title"></span>
+					<div data-align="right" class="action-buttons">
+						<a data-role="button" href="#search-view" data-icon="search"></a>
+						<a data-role="button" href="#cart-view" data-icon="cart"></a>
+						<a data-role="button" href="#popover-action-overflow" data-rel="popover" data-icon="action-overflow"></a>
+					</div>
+				</div>
+				<div data-role="tabstrip">
+					<a href="#genres-view">Genres</a>
+					<a href="#artists-view">Artists</a>
+				</div>
+			</div>
 
-        <!-- Search Views -->
+			<div data-role="popover" id="popover-action-overflow" data-popup='{"height": 110, "width": 125}'>
+				<div data-role="view" data-title="People">
+					<ul data-role="listview" data-click="app.homeLayout.navigate">
+						<li data-target="#account-view">Account</li>
+						<li data-target="#about-view">About</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
-        <div data-role="view" id="search-view" data-layout="search-layout" data-title="Search" data-init="app.searchView.init" data-show="app.searchView.show" style="display: none;">
-            <ul id="search-listview" data-role="listview" data-bind="source: results" data-template="album-list-template" data-style="inset" data-endless-scroll="true" data-auto-bind="false"></ul>
-        </div>
+		<!-- Search Views -->
 
-        <div data-role="layout" data-id="search-layout" data-show="app.baseLayout.show">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <span data-role="view-title"></span>
-                </div>
-                <div class="search-container">
-                    <input type="text" class="search-text" placeholder="Album title or artist" />
-                    <a data-role="button" data-icon="search" data-click="app.searchView.submitSearch"></a>
-                </div>
-            </header>
-            <div data-role="footer">
-                <div data-role="tabstrip">
-                    <a href="#genres-view" data-icon="home">Home</a>
-                    <a href="#search-view" data-icon="search">Search</a>
-                    <a href="#cart-view" data-icon="cart">Cart<span class="cart-badge km-badge" style="display: none;"></span></a>
-                    <a href="#account-view" data-icon="contacts">Account</a>
-                    <a href="#about-view" data-icon="about">About</a>
-                </div>
-            </div>
-        </div>
+		<div data-role="view" id="search-view" data-layout="search-layout" data-title="Search" data-init="app.searchView.init" data-show="app.searchView.show" style="display: none;">
+			<ul id="search-listview" data-role="listview" data-bind="source: results" data-template="album-list-template" data-style="inset" data-endless-scroll="true" data-auto-bind="false"></ul>
+		</div>
 
-        <div data-role="layout" data-id="search-layout" data-platform="android" data-show="app.baseLayout.show">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <a class="nav-button" data-align="left" data-role="backbutton"></a>
-                    <input type="text" class="search-text" placeholder="Album title or artist" />
-                    <div data-align="right" class="action-buttons">
-                        <a data-role="button" data-icon="search" data-click="app.searchView.submitSearch"></a>
-                    </div>
-                </div>
-            </header>
-        </div>
+		<div data-role="layout" data-id="search-layout" data-show="app.baseLayout.show">
+			<header data-role="header">
+				<div data-role="navbar">
+					<span data-role="view-title"></span>
+				</div>
+				<div class="search-container">
+					<input type="text" class="search-text" placeholder="Album title or artist" />
+					<a data-role="button" data-icon="search" data-click="app.searchView.submitSearch"></a>
+				</div>
+			</header>
+			<div data-role="footer">
+				<div data-role="tabstrip">
+					<a href="#genres-view" data-icon="home">Home</a>
+					<a href="#search-view" data-icon="search">Search</a>
+					<a href="#cart-view" data-icon="cart">
+						Cart<span class="cart-badge km-badge" style="display: none;"></span>
+					</a>
+					<a href="#account-view" data-icon="contacts">Account</a>
+					<a href="#about-view" data-icon="about">About</a>
+				</div>
+			</div>
+		</div>
 
+		<div data-role="layout" data-id="search-layout" data-platform="android" data-show="app.baseLayout.show">
+			<header data-role="header">
+				<div data-role="navbar">
+					<a class="nav-button" data-align="left" data-role="backbutton"></a>
+					<input type="text" class="search-text" placeholder="Album title or artist" />
+					<div data-align="right" class="action-buttons">
+						<a data-role="button" data-icon="search" data-click="app.searchView.submitSearch"></a>
+					</div>
+				</div>
+			</header>
+		</div>
 
-        <!-- Cart Checkout Views -->
+		<!-- Cart Checkout Views -->
 
-        <div data-role="view" id="cart-view" data-layout="cart-layout" data-title="Cart" data-model="app.cartView.viewModel" data-init="app.cartView.init" style="display: none;">
-            <header data-role="header" class="cart-header">
-                <div data-role="navbar">
-                    <a class="nav-button" data-align="left" data-role="backbutton" data-bind="visible: isAndroid"></a>
-                    <span data-role="view-title"></span>
-                    <a data-role="button" href="#checkout-view" data-align="right" data-bind="visible: cartHasItems">Checkout</a>
-                </div>
-                <h3>Swipe to Remove Item</h3>
-                <h1>TOTAL: <span class="total" data-bind="text: cart.aggregates.formattedTotal"></span></h1>
-            </header>
+		<div data-role="view" id="cart-view" data-layout="cart-layout" data-title="Cart" data-model="app.cartView.viewModel" data-init="app.cartView.init" style="display: none;">
+			<header data-role="header" class="cart-header">
+				<div data-role="navbar">
+					<a class="nav-button" data-align="left" data-role="backbutton" data-bind="visible: isAndroid"></a>
+					<span data-role="view-title"></span>
+					<a data-role="button" href="#checkout-view" data-align="right" data-bind="visible: cartHasItems">Checkout</a>
+				</div>
+				<h3>Swipe to Remove Item</h3>
+				<h1>
+					TOTAL: <span class="total" data-bind="text: cart.aggregates.formattedTotal"></span>
+				</h1>
+			</header>
 
-            <ul data-role="listview" data-bind="source: items" data-template="cart-list-template" data-style="inset"></ul>
-        </div>
-        
-        <div data-role="view" id="checkout-view" data-layout="base-layout" data-title="Checkout" data-model="app.checkoutView.viewModel" data-before-show="app.checkoutView.beforeShow" data-transition="slide:left" style="display: none;">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <a class="nav-button" data-align="left" data-role="backbutton">Cart</a>
-                    <span data-role="view-title"></span>
-                    <div data-role="button" data-align="right" data-bind="click: submit">Submit</div>
-                </div>
-            </header>
-            
-            <section class="validate" data-role="validator">
-                <ul data-role="listview">
-                    <li>
-                        First Name
-                        <input type="text" name="firstName" placeholder="First Name" data-bind="value: firstName" pattern=".{0,160}" required validationmessage="Required" />
-                    </li>
-                    <li>
-                        Last Name
-                        <input type="text" name="lastName" placeholder="Last Name" data-bind="value: lastName" pattern=".{0,160}" required validationmessage="Required" />
-                    </li>
-                    <li>
-                        Address
-                        <input type="text" name="address" placeholder="Address" data-bind="value: address" pattern=".{3,70}" required validationmessage="Required" />
-                    </li>
-                    <li>
-                        City
-                        <input type="text" name="city" placeholder="City" data-bind="value: city" pattern=".{0,40}" required validationmessage="Required"/>
-                    </li>
-                    <li>
-                        State
-                        <input type="text" name="state" placeholder="State" data-bind="value: state" pattern=".{0,40}" required validationmessage="Required"/>
-                    </li>
-                    <li>
-                        Postal Code
-                        <input type="text" name="zip" placeholder="Postal Code" data-bind="value: zip" pattern=".{5,10}" required validationmessage="Required"/>
-                    </li>
-                    <li>
-                        Country
-                        <input type="text" name="country" placeholder="Country" data-bind="value: country" pattern=".{0,40}" required validationmessage="Required"/>
-                    </li>
-                    <li>
-                        Phone
-                        <input type="text" name="phone" placeholder="Phone" data-bind="value: phone" pattern=".{0,24}" required validationmessage="Required"/>
-                    </li>
-                    <li>
-                        Email
-                        <input type="text" name="email" placeholder="Email Address" data-bind="value: email" pattern=".+@.+\..{2,}" required validationmessage="Required"/>
-                    </li>
-                </ul>
-            </section>
-        </div>
+			<ul data-role="listview" data-bind="source: items" data-template="cart-list-template" data-style="inset"></ul>
+		</div>
 
-        <div data-role="view" id="checkout-complete-view" data-layout="checkout-complete-layout" data-title="Order Complete" data-model="app.checkoutView.viewModel" data-transition="slide:left" style="display: none;">
-            <h1 class="thank-you">Thank You!</h1>
-        </div>
+		<div data-role="view" id="checkout-view" data-layout="base-layout" data-title="Checkout" data-model="app.checkoutView.viewModel" data-before-show="app.checkoutView.beforeShow" data-transition="slide:left" style="display: none;">
+			<header data-role="header">
+				<div data-role="navbar">
+					<a class="nav-button" data-align="left" data-role="backbutton">Cart</a>
+					<span data-role="view-title"></span>
+					<div data-role="button" data-align="right" data-bind="click: submit">Submit</div>
+				</div>
+			</header>
 
-        <div data-role="layout" data-id="cart-layout" data-show="app.cartView.layoutShow" data-platform="ios">
-            <div data-role="footer">
-                <div data-role="tabstrip">
-                    <a href="#genres-view" data-icon="home">Home</a>
-                    <a href="#search-view" data-icon="search">Search</a>
-                    <a href="#cart-view" data-icon="cart">Cart<span class="cart-badge km-badge" style="display: none;"></span></a>
-                    <a href="#account-view" data-icon="contacts">Account</a>
-                    <a href="#about-view" data-icon="about">About</a>
-                </div>
-            </div>
-        </div>
+			<section class="validate" data-role="validator">
+				<ul data-role="listview">
+					<li>
+						First Name
+						<input type="text" name="firstName" placeholder="First Name" data-bind="value: firstName" pattern=".{0,160}" required />
+					</li>
+					<li>
+						Last Name
+						<input type="text" name="lastName" placeholder="Last Name" data-bind="value: lastName" pattern=".{0,160}" required />
+					</li>
+					<li>
+						Address
+						<input type="text" name="address" placeholder="Address" data-bind="value: address" pattern=".{3,70}" required  />
+					</li>
+					<li>
+						City
+						<input type="text" name="city" placeholder="City" data-bind="value: city" pattern=".{0,40}" required />
+					</li>
+					<li>
+						State
+						<input type="text" name="state" placeholder="State" data-bind="value: state" pattern=".{0,40}" required />
+					</li>
+					<li>
+						Postal Code
+						<input type="text" name="zip" placeholder="Postal Code" data-bind="value: zip" pattern=".{5,10}" required />
+					</li>
+					<li>
+						Country
+						<input type="text" name="country" placeholder="Country" data-bind="value: country" pattern=".{0,40}" required />
+					</li>
+					<li>
+						Phone
+						<input type="text" name="phone" placeholder="Phone" data-bind="value: phone" pattern=".{0,24}" required />
+					</li>
+					<li>
+						Email
+						<input type="text" name="email" placeholder="Email Address" data-bind="value: email" pattern=".+@.+\..{2,}" required />
+					</li>
+				</ul>
+			</section>
+		</div>
 
-        <div data-role="layout" data-id="checkout-complete-layout" data-show="app.baseLayout.show">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <span data-role="view-title"></span>
-                </div>
-            </header>
+		<div data-role="view" id="checkout-complete-view" data-layout="checkout-complete-layout" data-title="Order Complete" data-model="app.checkoutView.viewModel" data-transition="slide:left" style="display: none;">
+			<h1 class="thank-you">Thank You!</h1>
+		</div>
 
-            <div data-role="footer">
-                <div data-role="tabstrip">
-                    <a href="#genres-view" data-icon="home">Home</a>
-                    <a href="#search-view" data-icon="search">Search</a>
-                    <a href="#cart-view" data-icon="cart">Cart<span class="cart-badge km-badge" style="display: none;"></span></a>
-                    <a href="#account-view" data-icon="contacts">Account</a>
-                    <a href="#about-view" data-icon="about">About</a>
-                </div>
-            </div>
-        </div>
+		<div data-role="layout" data-id="cart-layout" data-show="app.cartView.layoutShow" data-platform="ios">
+			<div data-role="footer">
+				<div data-role="tabstrip">
+					<a href="#genres-view" data-icon="home">Home</a>
+					<a href="#search-view" data-icon="search">Search</a>
+					<a href="#cart-view" data-icon="cart">
+						Cart<span class="cart-badge km-badge" style="display: none;"></span>
+					</a>
+					<a href="#account-view" data-icon="contacts">Account</a>
+					<a href="#about-view" data-icon="about">About</a>
+				</div>
+			</div>
+		</div>
 
-        <div data-role="layout" data-id="checkout-complete-layout" data-show="app.baseLayout.show" data-platform="android">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <div class="app-icon" data-align="left"></div>
-                    <span data-role="view-title"></span>
-                    <div data-align="right" class="action-buttons">
-                        <a data-role="button" href="#home-view" data-icon="home"></a>
-                    </div>
-                </div>
-            </header>
-        </div>
+		<div data-role="layout" data-id="checkout-complete-layout" data-show="app.baseLayout.show">
+			<header data-role="header">
+				<div data-role="navbar">
+					<span data-role="view-title"></span>
+				</div>
+			</header>
 
+			<div data-role="footer">
+				<div data-role="tabstrip">
+					<a href="#genres-view" data-icon="home">Home</a>
+					<a href="#search-view" data-icon="search">Search</a>
+					<a href="#cart-view" data-icon="cart">
+						Cart<span class="cart-badge km-badge" style="display: none;"></span>
+					</a>
+					<a href="#account-view" data-icon="contacts">Account</a>
+					<a href="#about-view" data-icon="about">About</a>
+				</div>
+			</div>
+		</div>
 
-        <!-- Account Views -->
+		<div data-role="layout" data-id="checkout-complete-layout" data-show="app.baseLayout.show" data-platform="android">
+			<header data-role="header">
+				<div data-role="navbar">
+					<div class="app-icon" data-align="left"></div>
+					<span data-role="view-title"></span>
+					<div data-align="right" class="action-buttons">
+						<a data-role="button" href="#home-view" data-icon="home"></a>
+					</div>
+				</div>
+			</header>
+		</div>
 
-        <div data-role="view" id="account-view" data-layout="account-layout" data-title="Account" style="display: none;" data-model="app.accountView.viewModel" data-before-show="app.accountView.beforeShow" data-show="app.accountView.accountViewShow">
-            <ul id="order-history-list" class="order-history-list"></ul>
-        </div>
+		<!-- Account Views -->
 
-        <div data-role="view" id="login-view" data-layout="base-layout" data-title="Log In" style="display: none;" data-model="app.accountView.viewModel" data-init="app.accountView.loginInit">
-            <p>For demonstration purposes you can register a new username, or use:</p>
-            <ul>
-                <li><strong>Username:</strong> owner</li>
-                <li><strong>Password:</strong> p@ssword123</li>
-            </ul>
+		<div data-role="view" id="account-view" data-layout="account-layout" data-title="Account" style="display: none;" data-model="app.accountView.viewModel" data-before-show="app.accountView.beforeShow" data-show="app.accountView.accountViewShow">
+			<ul id="order-history-list" class="order-history-list"></ul>
+		</div>
 
-            <input type="text" placeholder="Username" data-bind="value: loginUsername" />
-            <input type="password" placeholder="Password" data-bind="value: loginPassword" />
-            <div type="button" data-role="button" data-bind="click: login">Log In</div>
-            <a href="#register-view" data-role="button">Register</a>
-        </div>
-        
-        <div data-role="view" id="register-view" data-layout="base-layout" data-title="Create Account" style="display: none;" data-model="app.accountView.viewModel">
-            <input type="text" placeholder="Username" data-bind="value: registerUsername" />
-            <input type="password" placeholder="Password" data-bind="value: registerPassword" />
-            <input type="password" placeholder="Confirm Password" data-bind="value: registerPasswordRetyped" />
-            <input type="button" data-role="button" value="Register" data-bind="click: register" />
-        </div>
+		<div data-role="view" id="login-view" data-layout="base-layout" data-title="Log In" style="display: none;" data-model="app.accountView.viewModel" data-init="app.accountView.loginInit">
+			<p>For demonstration purposes you can register a new username, or use:</p>
+			<ul>
+				<li>
+					<strong>Username:</strong> owner
+				</li>
+				<li>
+					<strong>Password:</strong> p@ssword123
+				</li>
+			</ul>
 
-        <div data-role="layout" data-id="account-layout" data-show="app.accountView.layoutShow">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <span data-role="view-title"></span>
-                    <span data-role="button" data-bind="click: logout" data-align="right">Log Off</span>
-                </div>
-                <h2><span data-bind="text: userName" class="user-name"></span>'s Order History</h2>
-            </header>
-            <div data-role="footer">
-                <div data-role="tabstrip">
-                    <a href="#genres-view" data-icon="home">Home</a>
-                    <a href="#search-view" data-icon="search">Search</a>
-                    <a href="#cart-view" data-icon="cart">Cart<span class="cart-badge km-badge" style="display: none;"></span></a>
-                    <a href="#account-view" data-icon="contacts">Account</a>
-                    <a href="#about-view" data-icon="about">About</a>
-                </div>
-            </div>
+			<input type="text" placeholder="Username" data-bind="value: loginUsername" />
+			<input type="password" placeholder="Password" data-bind="value: loginPassword" />
+			<div data-type="button" data-role="button" data-bind="click: login">Log In</div>
+			<a href="#register-view" data-role="button">Register</a>
+		</div>
 
-            <div data-role="popover" id="popover-account-overflow" data-popup='{"height": 55, "width": 125}'>
-                <div data-role="view" data-title="People">
-                    <ul data-role="listview" data-click="app.accountView.action">
-                        <li data-action="logout">Log Off</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+		<div data-role="view" id="register-view" data-layout="base-layout" data-title="Create Account" style="display: none;" data-model="app.accountView.viewModel">
+			<input type="text" placeholder="Username" data-bind="value: registerUsername" />
+			<input type="password" placeholder="Password" data-bind="value: registerPassword" />
+			<input type="password" placeholder="Confirm Password" data-bind="value: registerPasswordRetyped" />
+			<input type="button" data-role="button" value="Register" data-bind="click: register" />
+		</div>
 
-        <div data-role="layout" data-id="account-layout" data-show="app.accountView.layoutShow" data-platform="android">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <a class="nav-button" data-align="left" data-role="backbutton"></a>
-                    <span data-role="view-title"></span>
-                    <div data-align="right" class="action-buttons">
-                        <a data-role="button" href="#popover-account-overflow" data-rel="popover" data-icon="action-overflow"></a>
-                    </div>
-                </div>
-                <h2><span data-bind="text: userName" class="user-name"></span>'s Order History</h2>
-            </header>
-        </div>
+		<div data-role="layout" data-id="account-layout" data-show="app.accountView.layoutShow">
+			<header data-role="header">
+				<div data-role="navbar">
+					<span data-role="view-title"></span>
+					<span data-role="button" data-bind="click: logout" data-align="right">Log Off</span>
+				</div>
+				<h2>
+					<span data-bind="text: userName" class="user-name"></span>'s Order History
+				</h2>
+			</header>
+			<div data-role="footer">
+				<div data-role="tabstrip">
+					<a href="#genres-view" data-icon="home">Home</a>
+					<a href="#search-view" data-icon="search">Search</a>
+					<a href="#cart-view" data-icon="cart">
+						Cart<span class="cart-badge km-badge" style="display: none;"></span>
+					</a>
+					<a href="#account-view" data-icon="contacts">Account</a>
+					<a href="#about-view" data-icon="about">About</a>
+				</div>
+			</div>
 
+			<div data-role="popover" id="popover-account-overflow" data-popup='{"height": 55, "width": 125}'>
+				<div data-role="view" data-title="People">
+					<ul data-role="listview" data-click="app.accountView.action">
+						<li data-action="logout">Log Off</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
-        <!-- About Views -->
+		<div data-role="layout" data-id="account-layout" data-show="app.accountView.layoutShow" data-platform="android">
+			<header data-role="header">
+				<div data-role="navbar">
+					<a class="nav-button" data-align="left" data-role="backbutton"></a>
+					<span data-role="view-title"></span>
+					<div data-align="right" class="action-buttons">
+						<a data-role="button" href="#popover-account-overflow" data-rel="popover" data-icon="action-overflow"></a>
+					</div>
+				</div>
+				<h2>
+					<span data-bind="text: userName" class="user-name"></span>'s Order History
+				</h2>
+			</header>
+		</div>
 
-        <div data-role="view" id="about-view" data-layout="about-layout" data-title="About" data-model="app.aboutView.viewModel" style="display: none;">
-            <img src="Images/awesomesauce-logo.png"/>
-            <h1>Kendo UI Mobile Music Store</h1>
-            <p>The Mobile Music Store is a demo app built using Kendo UI Mobile.</p>
-            
-            <footer>
-                <div class="footer-images"><img src="Images/kendo-ui-logo.png"/></div>
-                <a data-role="button" data-rel="actionsheet" href="#learnmore-actions">Learn More about Kendo UI</a>
-            </footer>
+		<!-- About Views -->
 
-            <ul data-role="actionsheet" id="learnmore-actions" data-popup='{"direction": "left"}'>
-                <li class="km-actionsheet-title">Learn More about Kendo UI</li>
-                <li><a href="#" data-action="app.aboutView.viewModel.openKendoWeb">Visit www.kendoui.com</a></li>
-                <li><a href="#" data-action="app.aboutView.viewModel.openSource">View Source for This App</a></li>
-            </ul>
-        </div>
+		<div data-role="view" id="about-view" data-layout="about-layout" data-title="About" data-model="app.aboutView.viewModel" style="display: none;">
+			<img src="Images/awesomesauce-logo.png" alt="awesomesauce-logo"/>
+			<h1>Kendo UI Mobile Music Store</h1>
+			<p>The Mobile Music Store is a demo app built using Kendo UI Mobile.</p>
 
-        <div data-role="layout" data-id="about-layout" data-show="app.baseLayout.show">
-            <div data-role="footer">
-                <div data-role="tabstrip">
-                    <a href="#genres-view" data-icon="home">Home</a>
-                    <a href="#search-view" data-icon="search">Search</a>
-                    <a href="#cart-view" data-icon="cart">Cart<span class="cart-badge km-badge" style="display: none;"></span></a>
-                    <a href="#account-view" data-icon="contacts">Account</a>
-                    <a href="#about-view" data-icon="about">About</a>
-                </div>
-            </div>
-        </div>
+			<footer>
+				<div class="footer-images">
+					<img src="Images/kendo-ui-logo.png" alt="kendo-ui-logo"/>
+				</div>
+				<a data-role="button" data-rel="actionsheet" href="#learnmore-actions">Learn More about Kendo UI</a>
+			</footer>
 
-        <div data-role="layout" data-id="about-layout" data-platform="android" data-show="app.baseLayout.show">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <a href="#genres-view" class="nav-button" data-align="left" data-role="backbutton"></a>
-                    <span data-role="view-title"></span>
-                    <div data-align="right" class="action-buttons">
-                        <a data-role="button" href="#home-view" data-icon="home"></a>
-                    </div>
-                </div>
-            </header>
-        </div>
+			<ul data-role="actionsheet" id="learnmore-actions" data-popup='{"direction": "left"}'>
+				<li class="km-actionsheet-title">Learn More about Kendo UI</li>
+				<li>
+					<a href="#" data-action="app.aboutView.viewModel.openKendoWeb">Visit www.kendoui.com</a>
+				</li>
+				<li>
+					<a href="#" data-action="app.aboutView.viewModel.openSource">View Source for This App</a>
+				</li>
+			</ul>
+		</div>
 
+		<div data-role="layout" data-id="about-layout" data-show="app.baseLayout.show">
+			<div data-role="footer">
+				<div data-role="tabstrip">
+					<a href="#genres-view" data-icon="home">Home</a>
+					<a href="#search-view" data-icon="search">Search</a>
+					<a href="#cart-view" data-icon="cart">
+						Cart<span class="cart-badge km-badge" style="display: none;"></span>
+					</a>
+					<a href="#account-view" data-icon="contacts">Account</a>
+					<a href="#about-view" data-icon="about">About</a>
+				</div>
+			</div>
+		</div>
 
-        <!-- Error Views -->
+		<div data-role="layout" data-id="about-layout" data-platform="android" data-show="app.baseLayout.show">
+			<header data-role="header">
+				<div data-role="navbar">
+					<a href="#genres-view" class="nav-button" data-align="left" data-role="backbutton"></a>
+					<span data-role="view-title"></span>
+					<div data-align="right" class="action-buttons">
+						<a data-role="button" href="#home-view" data-icon="home"></a>
+					</div>
+				</div>
+			</header>
+		</div>
 
-        <div data-role="modalview" id="error-view" style="display: none; width: 95%; height: 90%;">
-            <div data-role="header">
-                <div data-role="navbar">
-                    <span>Error</span>
-                    <a data-click="app.closeErrorModal" data-role="button" data-align="right">Close</a>
-                </div>
-            </div>
-            
-            <div class="message"></div>
-        </div>
+		<!-- Error Views -->
 
+		<div data-role="modalview" id="error-view" style="display: none; width: 95%; height: 90%;">
+			<div data-role="header">
+				<div data-role="navbar">
+					<span>Error</span>
+					<a data-click="app.closeErrorModal" data-role="button" data-align="right">Close</a>
+				</div>
+			</div>
 
-        <!-- Shared Layouts -->
+			<div class="message"></div>
+		</div>
 
-        <div data-role="layout" data-id="base-layout" data-show="app.baseLayout.show">
-            <div data-role="footer">
-                <div data-role="tabstrip">
-                    <a href="#genres-view" data-icon="home">Home</a>
-                    <a href="#search-view" data-icon="search">Search</a>
-                    <a href="#cart-view" data-icon="cart">Cart<span class="cart-badge km-badge" style="display: none;"></span></a>
-                    <a href="#account-view" data-icon="contacts">Account</a>
-                    <a href="#about-view" data-icon="about">About</a>
-                </div>
-            </div>
-        </div>
+		<!-- Shared Layouts -->
 
-        <div data-role="layout" data-id="base-layout" data-show="app.baseLayout.show" data-platform="android">
-            <header data-role="header">
-                <div data-role="navbar">
-                    <a class="nav-button" data-align="left" data-role="backbutton"></a>
-                    <span data-role="view-title"></span>
-                </div>
-            </header>
-        </div>
+		<div data-role="layout" data-id="base-layout" data-show="app.baseLayout.show">
+			<div data-role="footer">
+				<div data-role="tabstrip">
+					<a href="#genres-view" data-icon="home">Home</a>
+					<a href="#search-view" data-icon="search">Search</a>
+					<a href="#cart-view" data-icon="cart">
+						Cart<span class="cart-badge km-badge" style="display: none;"></span>
+					</a>
+					<a href="#account-view" data-icon="contacts">Account</a>
+					<a href="#about-view" data-icon="about">About</a>
+				</div>
+			</div>
+		</div>
 
+		<div data-role="layout" data-id="base-layout" data-show="app.baseLayout.show" data-platform="android">
+			<header data-role="header">
+				<div data-role="navbar">
+					<a class="nav-button" data-align="left" data-role="backbutton"></a>
+					<span data-role="view-title"></span>
+				</div>
+			</header>
+		</div>
 
-        <!-- Templates -->
+		<!-- Templates -->
 
-        <script id="genre-list-template" type="text/x-kendo-template">
-            <a href="\#albums-view?field=GenreId&operator=eq&value=#=GenreId#&title=#:encodeURIComponent(Name).replace("'", "%27")#">#=Name#</a>
-        </script>
+		<script id="genre-list-template" type="text/x-kendo-template">
+			<a href="\#albums-view?field=GenreId&operator=eq&value=#=GenreId#&title=#:encodeURIComponent(Name).replace("'", "%27")#">#=Name#</a>
+		</script>
 
-        <script id="artist-list-template" type="text/x-kendo-template">
-            <a href="\#albums-view?field=ArtistId&operator=eq&value=#=ArtistId#&title=#:encodeURIComponent(Name).replace("'", "%27")#">#=Name#</a>
-        </script>
+		<script id="artist-list-template" type="text/x-kendo-template">
+			<a href="\#albums-view?field=ArtistId&operator=eq&value=#=ArtistId#&title=#:encodeURIComponent(Name).replace("'", "%27")#">#=Name#</a>
+		</script>
 
-        <script id="album-list-template" type="text/x-kendo-template">
-            <img class="album-art" data-bind="attr: {src: albumArtUrl}" />
-            <div class="album-cart" data-role="button" data-bind="click: onAddToCart"><span data-bind="text: qtyInCart, attr: {class: buttonClasses}"></span><span class="km-icon km-cart"></span></div>
-            <h1 class="album-title" data-bind="text: Title"></h1>
-            <h2 class="album-artist" data-bind="text: Artist.Name"></h2>
-            <span class="album-price" data-bind="text: albumPrice"></span>
-        </script>
+		<script id="album-list-template" type="text/x-kendo-template">
+			<img class="album-art" data-bind="attr: {src: albumArtUrl}" />
+			<div class="album-cart" data-role="button" data-bind="click: onAddToCart">
+				<span data-bind="text: qtyInCart, attr: {class: buttonClasses}"></span><span class="km-icon km-cart"></span>
+			</div>
+			<h1 class="album-title" data-bind="text: Title"></h1>
+			<h2 class="album-artist" data-bind="text: Artist.Name"></h2>
+			<span class="album-price" data-bind="text: albumPrice"></span>
+		</script>
+			
+		<script id="artist-filter-template" type="text/x-kendo-template">
+			<a href="\#artists-view?value=#=data#" id="#=data#">#=data#</a>
+		</script>
+			
+		<script id="cart-list-template" type="text/x-kendo-template">
+			<div data-role="touch" data-enable-swipe="1" data-swipe="app.cartView.onToggleDeleteMode" data-hold="app.cartView.onToggleDeleteMode">
+				<div class="qty-and-price">
+					<strong data-bind="invisible: deleteMode">Qty</strong>
+					<input type="number" data-bind="value: qty, invisible: deleteMode" min="1" max="99" />
+					<span class="cart-delete-button" data-role="button" data-click="app.cartView.onRemove" data-bind="visible: deleteMode" data-icon="trash"></span>
+				</div>
+				<img class="album-art" data-bind="attr: {src: albumArtUrl}" />
+				<h1 class="album-title" data-bind="text: album.Title"></h1>
+				<h2 class="album-artist" data-bind="text: album.Artist.Name"></h2>
+				<span class="album-price" data-bind="text: albumPrice"></span>
+				<div class="subtotal">
+					Subtotal: <span data-bind="text: albumSubtotal"></span>
+				</div>
+			</div>
+		</script>
+			
+		<script id="order-history-header-template" type="text/x-kendo-template">
+			<span>Order\# #=data.items[0].OrderId#</span>
+			<span>#=app.accountView.calcOrderTotal(data.items)#</span>
+			<span>#=kendo.toString(data.items[0].OrderDate, "g")#</span>
+		</script>
+		
+		<script id="order-history-template" type="text/x-kendo-template">
+			<div>#=Title#</div>
+			<div>#=Quantity# at #=kendo.toString(UnitPrice, "c")# each</div>
+		</script>
+	
+		<!-- Scripts -->
 
-        <script id="artist-filter-template" type="text/x-kendo-template">
-            <a href="\#artists-view?value=#=data#" id="#=data#">#=data#</a>
-        </script>
-
-        <script id="cart-list-template" type="text/x-kendo-template">
-            <div data-role="touch" data-enable-swipe="1" data-swipe="app.cartView.onToggleDeleteMode" data-hold="app.cartView.onToggleDeleteMode">
-                <div class="qty-and-price">
-                    <strong data-bind="invisible: deleteMode">Qty</strong>
-                    <input type="number" data-bind="value: qty, invisible: deleteMode" min="1" max="99" />
-                    <span class="cart-delete-button" data-role="button" data-click="app.cartView.onRemove" data-bind="visible: deleteMode" data-icon="trash"></span>
-                </div>
-                <img class="album-art" data-bind="attr: {src: albumArtUrl}" />
-                <h1 class="album-title" data-bind="text: album.Title"></h1>
-                <h2 class="album-artist" data-bind="text: album.Artist.Name"></h2>
-                <span class="album-price" data-bind="text: albumPrice"></span>
-                <div class="subtotal">Subtotal: <span data-bind="text: albumSubtotal"></span></div>
-            </div>
-        </script>
-
-        <script id="order-history-header-template" type="text/x-kendo-template">
-            <span>Order\# #=data.items[0].OrderId#</span>
-            <span>#=app.accountView.calcOrderTotal(data.items)#</span>
-            <span>#=kendo.toString(data.items[0].OrderDate, "g")#</span>
-        </script>
-
-        <script id="order-history-template" type="text/x-kendo-template">
-            <div>#=Title#</div>
-            <div>#=Quantity# at #=kendo.toString(UnitPrice, "c")# each</div>
-        </script>
-
-
-        <!-- Scripts -->
-
-        <script data-main="scripts/main.js" src="scripts/require.js"></script>
-    </body>
+		<script data-main="scripts/main.js" src="scripts/require.js"></script>
+	</body>
 </html>
